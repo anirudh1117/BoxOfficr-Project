@@ -1,8 +1,13 @@
 from django.contrib import admin
-from .models import Movie, Genre, Cast, BoxOffice, RatingAgency, Rating
+from .models import Movie, Genre, Cast, BoxOffice, RatingAgency, Rating,AvailableMedia,Language,MovieTags
 
 @admin.register(Genre)
 class GenreAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+@admin.register(AvailableMedia)
+class AvaialbleMediaAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
@@ -31,3 +36,14 @@ class RatingAdmin(admin.ModelAdmin):
 class CastAdmin(admin.ModelAdmin):
     list_display = ('movie_worked', 'person', 'role')
     search_fields = ('movie_worked__title', 'person__first_name', 'person__last_name', 'role')
+    autocomplete_fields = ('person', 'movie_worked',)
+
+@admin.register(MovieTags)
+class MovieTagsAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)

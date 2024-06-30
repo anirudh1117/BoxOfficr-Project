@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.post-preview {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.post-meta {
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+.post-content h2 {
+    color: #444;
+    margin-top: 1.5rem;
+}
+
+.post-content h3 {
+    color: #555;
+    margin-top: 1rem;
+}
+
+.post-content p {
+    line-height: 1.6;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 8px;
+}

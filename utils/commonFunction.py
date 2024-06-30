@@ -110,3 +110,17 @@ def convert_budget(budget):
 def calculate_next_year():
     today = datetime.date.today()
     return today.year + 1
+
+def crore_to_million(crore):
+    """
+    Converts an amount from crores to millions.
+
+    Args:
+    crore (float): The amount in crores.
+
+    Returns:
+    float: The amount in millions.
+    """
+    # 1 crore is equal to 10 million
+    million = crore * 10
+    return million

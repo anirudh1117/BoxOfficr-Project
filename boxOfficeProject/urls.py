@@ -16,6 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,5 +25,9 @@ urlpatterns = [
     path('api/movie/',include('movie.urls')),
     path('api/awards/',include('awards.urls')),
     path('api/vehicle/',include('vehicle.urls')),
-    path('api/products/',include('productRecommend.urls'))
-]
+    path('api/products/',include('productRecommend.urls')),
+    path('api/blog/',include('blog.urls')),
+    path("ckeditor5/", include('django_ckeditor_5.urls')),
+    path("api/spotlights/", include('spotlights.urls')),
+    path("api/webseries/", include('webseries.urls'))
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

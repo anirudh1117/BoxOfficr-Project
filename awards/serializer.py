@@ -1,8 +1,11 @@
 from rest_framework import serializers
+from django.utils import timezone
+
+from movie.models import Movie
 
 from .models import Nomination, Award, AwardCategory, AwardEvent
 from celebrity.models import Celebrity
-from celebrity.serializer import FilmIndustrySerializer, RoleSerializer, CelebritySerializer
+from celebrity.serializer import CelebrityTagsSerializer, FilmIndustrySerializer, RoleSerializer, CelebritySerializer
 from movie.serializer import MovieShortSerilaizer
 
 
@@ -59,7 +62,32 @@ class CelebrityAwardsSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
     industry = FilmIndustrySerializer(many=True)
     roles = RoleSerializer(many=True)
+    tags = CelebrityTagsSerializer(many=True)
     awards = serializers.SerializerMethodField()
+    author = serializers.SerializerMethodField()
+    upcoming_movies_count = serializers.SerializerMethodField()
+    recommended_products_count = serializers.SerializerMethodField()
+    awards_count = serializers.SerializerMethodField()
+    vehicle_collection_count = serializers.SerializerMethodField()
+
+    def get_upcoming_movies_count(self, celebrity):
+        current_date = timezone.now().date()
+        return Movie.objects.filter(movie_worked__person=celebrity, release_date__gte=current_date).count()
+
+    def get_recommended_products_count(self, celebrity):
+        return celebrity.product_recommendations.count()
+
+    def get_awards_count(self, celebrity):
+        return celebrity.nominations.filter(winner=True).count()
+
+    def get_vehicle_collection_count(self, celebrity):
+        return celebrity.vehicle_ownerships.count()
+
+    def get_author(self, celebrity):
+        if celebrity.author:
+            full_name = (celebrity.author.first_name if celebrity.author.first_name else '') + ' ' + (celebrity.author.last_name if celebrity.author.last_name else '')
+            return full_name
+        return "Admin"
 
     def get_image(self, celebrity):
         request = self.context.get("request")

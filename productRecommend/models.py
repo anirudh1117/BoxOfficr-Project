@@ -31,7 +31,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     price_currency = models.CharField(max_length=10, choices=CURRENCY_CHOICES, null=True, blank=True)
     image = models.FileField(upload_to='media/products/', null=True, blank=True)
-    category = models.ManyToManyField(Category, null=True)
+    category = models.ManyToManyField(Category)
     brand = models.CharField(max_length=100, null=True, blank=True)
     sku = models.CharField(max_length=100, null=True, blank=True)
     likes = models.IntegerField(default=0)

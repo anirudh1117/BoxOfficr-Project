@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'blog/css/preview.css' %}">
+</head>
+<body>
+    <div class="post-preview">
+        <h1>{{ post.title }}</h1>
+        <div class="post-meta">
+            <p>By {{ post.author }}</p>
+            <p>Published on {{ post.created_at }}</p>
+        </div>
+        <div class="post-content">
+            {% for section in sections %}
+                {% if section.section_type == 'heading' %}
+                    <h2>{{ section.content }}</h2>
+                {% elif section.section_type == 'subheading' %}
+                    <h3>{{ section.content }}</h3>
+                {% elif section.section_type == 'paragraph' %}
+                    <p>{{ section.content }}</p>
+                {% elif section.section_type == 'image' %}
+                    <img src="{{ section.image.image.url }}" alt="{{ section.image.caption }}">
+                    <p>{{ section.image.caption }}</p>
+                {% elif section.section_type == 'content' %}
+                    <p>Content will come here</p>
+                {% elif section.section_type == 'custom' %}
+                    <div>{{ section.custom_content|safe }}</div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

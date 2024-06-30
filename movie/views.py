@@ -71,4 +71,4 @@ class CelebrityUpcomingMovieList(APIView):
                 celebrities[0],context={"request": request})
             return Response(serializer.data)
 
-        return {}
+        return Response({})
