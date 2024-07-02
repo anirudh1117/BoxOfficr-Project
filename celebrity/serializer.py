@@ -27,6 +27,24 @@ class CelebrityTagsSerializer(serializers.ModelSerializer):
 
 class CelebrityNameAndSlugSerializer(serializers.ModelSerializer):
     name = serializers.SerializerMethodField()
+    image = serializers.SerializerMethodField()
+    roles = serializers.SerializerMethodField()
+
+    def get_roles(self, obj):
+        return ", ".join([role.name for role in obj.roles.all()])
+
+    def get_image(self, celebrity):
+        request = self.context.get("request")
+        image_url = ''
+        if celebrity.image:
+            image_url = celebrity.image.url
+        else:
+            pass
+        path = request.build_absolute_uri()
+        path = path.replace('//', '/')
+        path = path.split('/')
+        url = path[0] + "//" + path[1] + image_url
+        return url
 
     def get_name(self, obj):
         if obj:
@@ -38,7 +56,7 @@ class CelebrityNameAndSlugSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Celebrity
-        fields = ('name', 'celebrity_slug')
+        fields = ('name', 'celebrity_slug', 'image', 'roles')
 
 
 class CelebrityDirectRelationshipSerializer(serializers.ModelSerializer):

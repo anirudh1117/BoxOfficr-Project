@@ -27,6 +27,7 @@ SECRET_KEY = 'django-insecure-dtw5o6^2_t$u8(1dw^5p^m9y(h_b#6#%h%t+)t19oaocau$+4=
 DEBUG = True
 
 ALLOWED_HOSTS = ['65.2.181.233']
+#ALLOWED_HOSTS = []
 
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
@@ -39,6 +40,7 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

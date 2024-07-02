@@ -7,10 +7,28 @@ from .models import Season, WebSeries
 
 
 class WebSeriesNameAndSlugSerializer(serializers.ModelSerializer):
+    poster = serializers.SerializerMethodField()
+    genres = serializers.SerializerMethodField()
+
+    def get_poster(self, obj):
+        request = self.context.get("request")
+        image_url = ''
+        if obj.poster:
+            image_url = obj.poster.url
+        else:
+            pass
+        path = request.build_absolute_uri()
+        path = path.replace('//', '/')
+        path = path.split('/')
+        url = path[0] + "//" + path[1] + image_url
+        return url
+
+    def get_genres(self, obj):
+        return ", ".join([genre.name for genre in obj.genres.all()])
 
     class Meta:
         model = WebSeries
-        fields = ('title', 'title_slug')
+        fields = ('title', 'title_slug', 'poster', 'genres')
 
 
 class SeasonSerializer(serializers.ModelSerializer):
@@ -23,10 +41,10 @@ class SeasonSerializer(serializers.ModelSerializer):
     subtitle_languages = serializers.SerializerMethodField()
     audio_languages = serializers.SerializerMethodField()
 
-    def get_web_series_title(self,obj):
+    def get_web_series_title(self, obj):
         if obj.series and obj.series.title:
             return obj.series.title
-        
+
         return "NA"
 
     def get_poster(self, seasonObj):

@@ -214,7 +214,25 @@ class CelebrityMovieSerializer(serializers.ModelSerializer):
 
 
 class MovieNameAndSlugSerializer(serializers.ModelSerializer):
+    poster = serializers.SerializerMethodField()
+    genres = serializers.SerializerMethodField()
+
+    def get_poster(self, movieObj):
+        request = self.context.get("request")
+        image_url = ''
+        if movieObj.poster:
+            image_url = movieObj.poster.url
+        else:
+            pass
+        path = request.build_absolute_uri()
+        path = path.replace('//', '/')
+        path = path.split('/')
+        url = path[0] + "//" + path[1] + image_url
+        return url
+
+    def get_genres(self, obj):
+        return ", ".join([genre.name for genre in obj.genres.all()])
 
     class Meta:
         model = Movie
-        fields = ('title', 'title_slug')
+        fields = ('title', 'title_slug', 'poster', 'genres')

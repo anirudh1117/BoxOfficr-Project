@@ -12,16 +12,16 @@ class SpotlightDataView(APIView):
         if 'celebrity' in fields_param:
             celebrities = SpotlightCelebrities.objects.filter(active=True)
             response_data['celebrities'] = SpotlightCelebritySerializer(
-                celebrities, many=True).data
+                celebrities, many=True, context={"request": request}).data
 
         if 'movie' in fields_param:
             movies = SpotlightMovies.objects.filter(active=True)
             response_data['movies'] = SpotlightMovieSerializer(
-                movies, many=True).data
+                movies, many=True, context={"request": request}).data
 
         if 'webseries' in fields_param:
             web_series = SpotlightWebSeries.objects.filter(active=True)
             response_data['webseries'] = SpotlightWebSeriesSerializer(
-                web_series, many=True).data
+                web_series, many=True, context={"request": request}).data
 
         return Response(response_data)
