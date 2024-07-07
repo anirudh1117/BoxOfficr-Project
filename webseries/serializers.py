@@ -16,7 +16,7 @@ class WebSeriesNameAndSlugSerializer(serializers.ModelSerializer):
         if obj.poster:
             image_url = obj.poster.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -53,7 +53,7 @@ class SeasonSerializer(serializers.ModelSerializer):
         if seasonObj.poster:
             image_url = seasonObj.poster.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')

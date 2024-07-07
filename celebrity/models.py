@@ -222,9 +222,10 @@ class BiographyMedia(models.Model):
         ('bio/wiki', 'Bio/Wiki'),
         ('physicalStats', 'Physical Stats'),
         ('favourites', 'Favourites'),
+        ('Social', 'Social Media')
     ]
 
-    biography = models.OneToOneField(
+    biography = models.ForeignKey(
         Biography, on_delete=models.CASCADE, related_name='biography_media')
     biography_type = models.CharField(
         max_length=100, choices=BIOGRAPHY_TYPE_CHOICES, default='bio/wiki')
@@ -232,6 +233,7 @@ class BiographyMedia(models.Model):
         max_length=100, choices=PLATFORM_TYPE_CHOICES, default='instagram')
     image = models.FileField(
         upload_to='media/celebrities/biography/', null=True, blank=True)
+    alt_text = models.CharField(blank=True, null=True,max_length=1000)
     embedded_code = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -258,6 +260,7 @@ class CelebrityFacts(models.Model):
         max_length=100, choices=TYPE_CHOICES, default='instagram')
     image = models.FileField(
         upload_to='media/celebrities/facts/', null=True, blank=True)
+    alt_text = models.CharField(blank=True, null=True,max_length=1000)
     embedded_code = models.TextField(null=True, blank=True)
 
     def __str__(self):
@@ -303,54 +306,54 @@ class CelebrityFAQ(models.Model):
 
 class CelebrityRelationship(models.Model):
     RELATIONSHIP_CHOICES = [
-    ('father', 'Father'),
-    ('mother', 'Mother'),
-    ('step_father', 'Step Father'),
-    ('step_mother', 'Step Mother'),
-    ('girlfriend', 'Girlfriend'),
-    ('boyfriend', 'Boyfriend'),
-    ('sister', 'Sister'),
-    ('brother', 'Brother'),
-    ('affair', 'Affair'),
-    ('ex_girlfriend', 'Ex-Girlfriend'),
-    ('ex_boyfriend', 'Ex-Boyfriend'),
-    ('ex_spouse', 'Ex-Spouse'),
-    ('husband', 'Husband'),
-    ('wife', 'Wife'),
-    ('son', 'Son'),
-    ('daughter', 'Daughter'),
-    ('step_son', 'Step Son'),
-    ('step_daughter', 'Step Daughter'),
-    ('grandfather', 'Grandfather'),
-    ('grandmother', 'Grandmother'),
-    ('grandson', 'Grandson'),
-    ('granddaughter', 'Granddaughter'),
-    ('uncle', 'Uncle'),
-    ('aunt', 'Aunt'),
-    ('nephew', 'Nephew'),
-    ('niece', 'Niece'),
-    ('cousin', 'Cousin'),
-    ('father_in_law', 'Father-in-law'),
-    ('mother_in_law', 'Mother-in-law'),
-    ('brother_in_law', 'Brother-in-law'),
-    ('sister_in_law', 'Sister-in-law'),
-    ('son_in_law', 'Son-in-law'),
-    ('daughter_in_law', 'Daughter-in-law'),
-    ('step_father_in_law', 'Step Father-in-law'),
-    ('step_mother_in_law', 'Step Mother-in-law'),
-    ('friend', 'Friend'),
-    ('mentor', 'Mentor'),
-    ('protégé', 'Protégé'),
-    ('business_partner', 'Business Partner'),
-    ('roommate', 'Roommate'),
-    ('fiance', 'Fiancé'),
-    ('fiancee', 'Fiancée'),
-    ('godfather', 'Godfather'),
-    ('godmother', 'Godmother'),
-    ('legal_guardian', 'Legal Guardian'),
-    ('ward', 'Ward'),
-    ('other', 'Other')
-]
+        ('father', 'Father'),
+        ('mother', 'Mother'),
+        ('step_father', 'Step Father'),
+        ('step_mother', 'Step Mother'),
+        ('girlfriend', 'Girlfriend'),
+        ('boyfriend', 'Boyfriend'),
+        ('sister', 'Sister'),
+        ('brother', 'Brother'),
+        ('affair', 'Affair'),
+        ('ex_girlfriend', 'Ex-Girlfriend'),
+        ('ex_boyfriend', 'Ex-Boyfriend'),
+        ('ex_spouse', 'Ex-Spouse'),
+        ('husband', 'Husband'),
+        ('wife', 'Wife'),
+        ('son', 'Son'),
+        ('daughter', 'Daughter'),
+        ('step_son', 'Step Son'),
+        ('step_daughter', 'Step Daughter'),
+        ('grandfather', 'Grandfather'),
+        ('grandmother', 'Grandmother'),
+        ('grandson', 'Grandson'),
+        ('granddaughter', 'Granddaughter'),
+        ('uncle', 'Uncle'),
+        ('aunt', 'Aunt'),
+        ('nephew', 'Nephew'),
+        ('niece', 'Niece'),
+        ('cousin', 'Cousin'),
+        ('father_in_law', 'Father-in-law'),
+        ('mother_in_law', 'Mother-in-law'),
+        ('brother_in_law', 'Brother-in-law'),
+        ('sister_in_law', 'Sister-in-law'),
+        ('son_in_law', 'Son-in-law'),
+        ('daughter_in_law', 'Daughter-in-law'),
+        ('step_father_in_law', 'Step Father-in-law'),
+        ('step_mother_in_law', 'Step Mother-in-law'),
+        ('friend', 'Friend'),
+        ('mentor', 'Mentor'),
+        ('protégé', 'Protégé'),
+        ('business_partner', 'Business Partner'),
+        ('roommate', 'Roommate'),
+        ('fiance', 'Fiancé'),
+        ('fiancee', 'Fiancée'),
+        ('godfather', 'Godfather'),
+        ('godmother', 'Godmother'),
+        ('legal_guardian', 'Legal Guardian'),
+        ('ward', 'Ward'),
+        ('other', 'Other')
+    ]
 
     celebrity = models.ForeignKey(
         Celebrity, on_delete=models.CASCADE, related_name='relationships')
@@ -366,6 +369,7 @@ class CelebrityRelationship(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     image = models.FileField(
         upload_to='media/celebrities/celebrity_relations/', blank=True, null=True)
+    alt_text = models.CharField(blank=True, null=True,max_length=1000)
     embedded_code = models.TextField(blank=True, null=True)
 
     def __str__(self):
@@ -393,6 +397,7 @@ class CelebrityControversies(models.Model):
         max_length=100, choices=TYPE_CHOICES, default='instagram')
     image = models.FileField(
         upload_to='media/celebrities/controversies/', null=True, blank=True)
+    alt_text = models.CharField(blank=True, null=True,max_length=1000)
     embedded_code = models.TextField(null=True, blank=True)
 
     def __str__(self):

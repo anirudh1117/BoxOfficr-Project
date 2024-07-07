@@ -28,6 +28,11 @@ admin.site.register(Post, PostAdmin)
 class SectionAdmin(admin.ModelAdmin):
     list_display = ('post', 'section_type', 'content', 'previous_section')
     #autocomplete_fields = ['post', 'previous_section']
+    fieldsets = (
+        ("general", {"fields": ("post", "section_type", "previous_section",)}),
+        ("content", {"fields": ("content",)}),
+        ("custom", {"fields": ("custom_content",)}),
+    )
 
     formfield_overrides = {
         CKEditor5Field: {'widget': CKEditor5Widget(config_name='default')},

@@ -444,3 +444,16 @@ CKEDITOR_5_CONFIGS = {
         },
     },
 }
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "darkly",
+    "dark_mode_theme": "darkly",
+}
+
+JAZZMIN_SETTINGS = {
+    # Whether to show the UI customizer on the sidebar
+    "show_ui_builder": True,
+    "changeform_format": "horizontal_tabs",
+    # override change forms on a per modeladmin basis
+    "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
+}

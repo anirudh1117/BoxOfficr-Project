@@ -160,6 +160,8 @@ class WebSeriesCast(models.Model):
         Season, on_delete=models.CASCADE, related_name='web_series_worked')
     person = models.ForeignKey(Celebrity, on_delete=models.CASCADE)
     role = models.ForeignKey(Role, on_delete=models.DO_NOTHING)
+    character_name = models.CharField(max_length=500, null=True,blank=True)
+    character_description = models.TextField(blank=True)
 
     def __str__(self):
         return f"{self.person.first_name} {self.person.last_name} as {self.role} in {self.web_series_worked.title}"

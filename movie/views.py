@@ -12,7 +12,8 @@ class BoxOfficeList(APIView):
     permission_classes = []
 
     def get(self, request,format=None):
-        movies = Movie.objects.all()
+        current_date = timezone.now().date()
+        movies = Movie.objects.filter(release_date__lt=current_date).order_by('-release_date')
         paginator = CustomPageNumberPagination()
         page = paginator.paginate_queryset(movies, request)
 

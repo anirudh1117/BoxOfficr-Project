@@ -39,7 +39,7 @@ class CelebrityNameAndSlugSerializer(serializers.ModelSerializer):
         if celebrity.image:
             image_url = celebrity.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -69,7 +69,7 @@ class CelebrityDirectRelationshipSerializer(serializers.ModelSerializer):
         if relationship.image:
             image_url = relationship.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -79,7 +79,7 @@ class CelebrityDirectRelationshipSerializer(serializers.ModelSerializer):
     class Meta:
         model = CelebrityRelationship
         fields = ('celebrity', 'relationship_type',
-                  'related_celebrity', 'name', 'image', 'embedded_code',)
+                  'related_celebrity', 'name', 'image', 'embedded_code', 'alt_text',)
 
 
 class CelebrityDirectRelationshipSerializer(serializers.ModelSerializer):
@@ -92,7 +92,7 @@ class CelebrityDirectRelationshipSerializer(serializers.ModelSerializer):
         if relationship.image:
             image_url = relationship.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -102,7 +102,7 @@ class CelebrityDirectRelationshipSerializer(serializers.ModelSerializer):
     class Meta:
         model = CelebrityRelationship
         fields = ('celebrity', 'relationship_type',
-                  'related_celebrity', 'name', 'image', 'embedded_code',)
+                  'related_celebrity', 'name', 'image', 'embedded_code', 'alt_text',)
 
 
 class CelebrityInDirectRelationshipSerializer(serializers.ModelSerializer):
@@ -116,7 +116,7 @@ class CelebrityInDirectRelationshipSerializer(serializers.ModelSerializer):
         if relationship.image:
             image_url = relationship.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -140,7 +140,7 @@ class CelebrityInDirectRelationshipSerializer(serializers.ModelSerializer):
     class Meta:
         model = CelebrityRelationship
         fields = ('celebrity', 'relationship_type',
-                  'related_celebrity', 'name', 'image', 'embedded_code',)
+                  'related_celebrity', 'name', 'image', 'embedded_code', 'alt_text',)
 
 
 class CelebrityControversiesSerializer(serializers.ModelSerializer):
@@ -152,7 +152,7 @@ class CelebrityControversiesSerializer(serializers.ModelSerializer):
         if facts.image:
             image_url = facts.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -173,7 +173,7 @@ class CelebrityFactsSerializer(serializers.ModelSerializer):
         if facts.image:
             image_url = facts.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -194,7 +194,7 @@ class CelebrityFactsSerializer(serializers.ModelSerializer):
         if facts.image:
             image_url = facts.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -226,7 +226,7 @@ class BiographyMediaSerializer(serializers.ModelSerializer):
         if biographymedia.image:
             image_url = biographymedia.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -267,7 +267,7 @@ class CelebritySerializer(serializers.ModelSerializer):
         if celebrity.image:
             image_url = celebrity.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -298,7 +298,7 @@ class BiographySerializer(serializers.ModelSerializer):
         if celebrity.image:
             image_url = celebrity.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -428,7 +428,7 @@ class CelebrityBiographySerializer(serializers.ModelSerializer):
         if celebrity.image:
             image_url = celebrity.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')

@@ -26,7 +26,7 @@ class BoxOfficeSerializer(serializers.ModelSerializer):
         if movieObj.poster:
             image_url = movieObj.poster.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -103,7 +103,7 @@ class MovieShortSerilaizer(serializers.ModelSerializer):
         if movieObj.poster:
             image_url = movieObj.poster.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -186,7 +186,7 @@ class CelebrityMovieSerializer(serializers.ModelSerializer):
         if celebrity.image:
             image_url = celebrity.image.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
@@ -223,7 +223,7 @@ class MovieNameAndSlugSerializer(serializers.ModelSerializer):
         if movieObj.poster:
             image_url = movieObj.poster.url
         else:
-            pass
+            return ""
         path = request.build_absolute_uri()
         path = path.replace('//', '/')
         path = path.split('/')
